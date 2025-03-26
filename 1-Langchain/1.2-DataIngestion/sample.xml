@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <record>
+        <id>1</id>
+        <name>John Doe</name>
+        <email>johndoe@example.com</email>
+        <message>Hello, this is a sample message.</message>
+    </record>
+    <record>
+        <id>2</id>
+        <name>Jane Smith</name>
+        <email>janesmith@example.com</email>
+        <message>Another example message for XML processing.</message>
+    </record>
+</data>
