@@ -5,3 +5,5 @@ langchain_community
 pypdf
 bs4
 langchain-text-splitters
+sentence_transformers
+langchain_huggingface
