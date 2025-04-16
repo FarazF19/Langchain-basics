@@ -22,7 +22,7 @@ prompt= ChatPromptTemplate([
 ])
 
 ## Streamlit framework
-st.title("Langchain App with Llama2")
+st.title("Langchain App with Gemma")
 
 input_text= st.text_input("What question have u in mind?")
 
