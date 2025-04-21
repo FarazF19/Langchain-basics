@@ -45,105 +45,23 @@ Here's the code breakdown in logical steps:
 
 ### 1. 🌐 Load Environment Variables
 
-```python
-import os
-from dotenv import load_dotenv
+### 2. 📰 Data Ingestion from a Website
 
-load_dotenv()
+### 3. ✂️ Text Splitting
 
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_PROJECT"] = os.getenv("LANGCHAIN_PROJECT")
-2. 📰 Data Ingestion from a Website
-python
-Copy
-Edit
-from langchain_community.document_loaders import WebBaseLoader
+### 4. 🧬 Embedding Creation using OpenAI
 
-loader = WebBaseLoader("https://docs.smith.langchain.com/evaluation/tutorials/evaluation")
-docs = loader.load()
-3. ✂️ Text Splitting
-python
-Copy
-Edit
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+### 5. 📚 Storing Embeddings in FAISS Vector Store
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-documents = text_splitter.split_documents(docs)
-4. 🧬 Embedding Creation using OpenAI
-python
-Copy
-Edit
-from langchain_openai import OpenAIEmbeddings
+### 6. 🔍 Search Similar Chunks
 
-embeddings = OpenAIEmbeddings()
-5. 📚 Storing Embeddings in FAISS Vector Store
-python
-Copy
-Edit
-from langchain_community.vectorstores import FAISS
+### 7. 🤖 LLM Setup for Response Generation
 
-vectordb = FAISS.from_documents(documents=documents, embedding=embeddings)
-6. 🔍 Search Similar Chunks
-python
-Copy
-Edit
-query = "Each datapoint should consist of, at the very least, the inputs to the application"
-result = vectordb.similarity_search(query)
-print(result[0].page_content)
-7. 🤖 LLM Setup for Response Generation
-python
-Copy
-Edit
-from langchain_openai import ChatOpenAI
+### 8. 🔗 Create Document Chain with a Prompt
 
-llm = ChatOpenAI(model="gpt-4o")
-8. 🔗 Create Document Chain with a Prompt
-python
-Copy
-Edit
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_core.prompts import ChatPromptTemplate
+### 9. 🧠 Basic Document Invocation Example
 
-prompt = ChatPromptTemplate.from_template("""
-Answer the following question based on the content:
-<context>
-{context}
-</context>
-""")
-
-document_chain = create_stuff_documents_chain(llm, prompt)
-9. 🧠 Basic Document Invocation Example
-python
-Copy
-Edit
-from langchain_core.documents import Document
-
-document_chain.invoke({
-    "input": query,
-    "context": [Document(page_content=result[0].page_content)]
-})
-10. 🔁 Full Retrieval Chain Pipeline
-python
-Copy
-Edit
-retriever = vectordb.as_retriever()
-
-from langchain.chains import create_retrieval_chain
-
-retrieval_chain = create_retrieval_chain(retriever, document_chain)
-response = retrieval_chain.invoke({"input": query})
-print(response)
-📁 Folder Structure
-bash
-Copy
-Edit
-├── .env                     # API keys and project secrets
-├── main.py                  # Full code for ingestion to RAG app
-├── requirements.txt         # Dependencies
-└── README.md                # This file
-📸 Architecture
+### 10. 🔁 Full Retrieval Chain Pipeline
 
 🧑‍💻 Author
 Muhammad Faraz
@@ -154,4 +72,3 @@ I’m currently diving deep into AI Agents, LLMOps, and GenAI frameworks. Open t
 
 📬 Contact
 Want to collaborate or hire? Feel free to connect!
-```
