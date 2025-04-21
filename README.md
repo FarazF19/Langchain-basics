@@ -63,10 +63,11 @@ Here's the code breakdown in logical steps:
 
 ### 10. 🔁 Full Retrieval Chain Pipeline
 
-🧑‍💻 Author
-Muhammad Faraz
-💼 AI Full Stack Developer
-🔗 Connect on LinkedIn
+## 🙋‍♂️ About Me
+
+**Muhammad Faraz**  
+💻 _AI Full Stack Developer_  
+🔗 [Connect on LinkedIn](https://www.linkedin.com/in/mfaraz7)
 
 I’m currently diving deep into AI Agents, LLMOps, and GenAI frameworks. Open to collaboration and freelance/remote roles.
 
